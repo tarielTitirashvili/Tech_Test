@@ -1,9 +1,13 @@
 import './App.css';
+import Header from './components/header';
+import Search from './components/search';
 
 function App() {
+
   return (
     <div>
-      
+      <Header />
+      <Search />
     </div>
   );
 }
