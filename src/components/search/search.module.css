@@ -1,3 +1,6 @@
+.root{
+  --width: 400px;
+}
 .search_container{
   width: 100%;
   display: flex;
@@ -12,15 +15,16 @@
   border-radius: 10px;
   box-shadow: 0 3px 1px black;
 }
-.search_input{
+.search_textarea{
   height: 2rem;
   width: calc(100% - 30px);
   padding: 5px 15px;
   border: 3px solid lightgray;
   border-radius: 10px;
   font-size: 1.5rem;
+  resize: none;
 }
-.search_input:focus{
+.search_textarea:focus{
   outline: none;
   border-color: rgb(13, 246, 211);
   border-width: 3px;
@@ -30,4 +34,21 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
+.users_container{
+  width: calc(30% + 30px);
+  margin: auto;
+  position: absolute;
+  background-color: rgb(214, 223, 223);
+  box-shadow: 0 3px 1px black;
+  border-radius: 30px;
+}
+.container{
+  display: none;
+  width: 300px;
+}
+.users{
+  display: flex;
+  justify-content: center;
+  
 }
