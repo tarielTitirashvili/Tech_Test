@@ -29,12 +29,14 @@ export default function Search() {
   }
   return (
     <>
-      <h2 >find github users here fast and easy.</h2>
-      <div >
-        <div>
+      <h2 className={css.small_title} >find github users here fast and easy.</h2>
+      <div className={css.search_container}>
+        <div className={css.search_wrapper}>
           <input 
+            className={css.search_input}
             value = { searchKey } 
             onChange = { onChange } 
+            placeholder="Search GitHub users"
             type="text" 
             name="search" 
             id="search" 
