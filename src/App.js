@@ -1,6 +1,6 @@
-import './App.css';
-import Header from './components/header';
-import Search from './components/search';
+import "./App.css"
+import Header from "./components/header"
+import Search from "./components/search"
 
 function App() {
 
@@ -8,6 +8,8 @@ function App() {
     <>
       <Header />
       <Search />
+      <h2 style={{height: "100vw"}}>
+      </h2>
     </>
   );
 }

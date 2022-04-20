@@ -1,9 +1,29 @@
 .user_container{
+  padding: 10px 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: left;
   align-items: center;
   width: 100%;
+  cursor: pointer;
+  z-index: 0;
+}
+.user_container:first-child:hover{
+  border-radius: 10px 10px 0 0;
+} 
+.user_container:last-of-type:hover{
+  border-radius: 0 0 10px 10px;
+}
+.user_container:hover{
+  background-color: rgb(39, 186, 231);
+  color: white;
 }
 .image{
-  height: 100px;
+  height: 80px;
+  margin-left: 15px;
+}
+.login{
+  margin-left: 15px;
+}
+.line{
+  border-bottom: 1px rgba(0, 0, 0, 0.29) solid;
 }

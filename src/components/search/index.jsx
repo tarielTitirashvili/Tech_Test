@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import User from '../user'
-import css from './search.module.css'
+import User from "../user"
+import css from "./search.module.css"
 
 export default function Search() {
-  const [searchKey, setSearchKey] = useState('')
+  const [searchKey, setSearchKey] = useState("")
   const[ loading, setLoading ] = useState(false)
   const[ users, setUsers ] = useState([])
   const[ focused, setFocused ] = useState(false)
@@ -11,7 +11,7 @@ export default function Search() {
   useEffect(()=>{
     if(searchKey){
       setLoading(true)
-      fetch(`https://api.github.com/search/users?q=${searchKey}&per_page=5`,{ method: 'GET'} )
+      fetch(`https://api.github.com/search/users?q=${searchKey}&per_page=5`,{ method: "GET"} )
       .then((res)=>res.json())
       .then((data)=>{
         setUsers(data.items)
@@ -28,13 +28,11 @@ export default function Search() {
     setFocused(true)
   }
   function blur() {
-    setTimeout(()=>{
       setFocused(false)
-    },100)
   }
 
   if(loading){
-    return<div style={{width: '100vw', height: '100vh'}}>
+    return<div style={{width: "100vw", height: "100vh"}}>
       Loading...
     </div>
   }
@@ -56,15 +54,19 @@ export default function Search() {
           />
         </div>
       </div>
-        <div className={css.users}>
-          <div className={css.users_container}>
+        <div className={css.users_container}>
+          <ul className={css.users_wrapper}>
             {
-              focused && users.length>0?
+              searchKey && focused && users?
               users.map((user)=>{
                 return<User key={user.id} login={user.login} avatarUrl={user.avatar_url} htmlUrl={user.html_url} />
-              }):''
+              }): !users? <div className={css.error_massage}>
+                <h1>
+                  GitHub API has requests limit. please wait few seconds and try again.
+                </h1>
+              </div>:''
             }
-          </div>
+          </ul>
         </div>
     </>
   )

@@ -1,5 +1,5 @@
-import React from 'react'
-import css from './header.module.css'
+import React from "react"
+import css from "./header.module.css"
 
 export default function Header() {
   return (
@@ -7,8 +7,8 @@ export default function Header() {
       <img src="" alt="" />
       <h1>
         <a 
-          href='https://github.com/' 
-          target='_blank'
+          href="https://github.com/" 
+          target="_blank"
           rel="noreferrer"
         >
           GitHub Search
