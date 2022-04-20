@@ -9,7 +9,7 @@
 }
 .search_wrapper{
   background-image: -webkit-linear-gradient(top, #348ca9, #4a659a);
-  width: 30%;
+  width: 25rem;
   padding: 15px;
   border: 1px solid #024e6a;
   border-radius: 10px;
@@ -26,9 +26,9 @@
 }
 .search_textarea:focus{
   outline: none;
-  border-color: rgb(13, 246, 211);
+  border-color: none;
   border-width: 3px;
-  box-shadow: 0 0 10px #719ECE;
+  box-shadow: none;
 }
 .small_title{
   width: 100%;
@@ -36,7 +36,7 @@
   justify-content: center;
 }
 .users_wrapper{
-  width: calc(30% + 30px);
+  width: 25rem;
   margin: auto;
   position: absolute;
   background-color: rgb(214, 223, 223);
@@ -51,8 +51,12 @@
 .users_container{
   display: flex;
   justify-content: center;
-  
 }
 .error_massage{
+  box-shadow: none;
   color: red;
+}
+.loader {
+  background: url('http://www.xiconeditor.com/image/icons/loading.gif') no-repeat right center;
+  background-color: white;
 }

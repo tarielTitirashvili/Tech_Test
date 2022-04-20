@@ -8,8 +8,6 @@ function App() {
     <>
       <Header />
       <Search />
-      <h2 style={{height: "100vw"}}>
-      </h2>
     </>
   );
 }
