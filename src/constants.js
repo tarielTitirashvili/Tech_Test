@@ -1,0 +1,1 @@
+export const GET_USERS_URL = "https://api.github.com/search/users"

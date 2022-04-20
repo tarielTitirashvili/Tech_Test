@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { getUsers } from "../../API/API"
 import User from "../user"
 import css from "./search.module.css"
 
@@ -7,6 +8,7 @@ export default function Search() {
   const[ loading, setLoading ] = useState(false)
   const[ users, setUsers ] = useState([])
   const[ focused, setFocused ] = useState(false)
+  const[ error, setError ] = useState('')
 
   useEffect(()=>{
     if(searchKey){
@@ -15,8 +17,13 @@ export default function Search() {
         .then((res)=>res.json())
         .then((data)=>{
           setUsers(data.items)
-          setLoading(false)
         })
+      const getterUsers = async () => {
+        const data = await getUsers(searchKey, setLoading, setError)
+        console.log(data)
+      }
+      getterUsers()
+      setLoading(false)
     }
   },[searchKey])
 
@@ -27,7 +34,7 @@ export default function Search() {
     setFocused(true)
   }
   function blur() {
-      setFocused(false)
+    setFocused(false)
   }
 
   return (
@@ -51,20 +58,18 @@ export default function Search() {
             {
               searchKey && focused && users && !loading?
               users.map((user)=>{
-                return<User 
-                  key={user.id} 
-                  login={user.login} 
-                  avatarUrl={user.avatar_url} 
-                  htmlUrl={user.html_url} 
-                  setSearchKey={setSearchKey} 
+                return<User
+                  key={user.id}
+                  login={user.login}
+                  avatarUrl={user.avatar_url}
+                  htmlUrl={user.html_url}
+                  setSearchKey={setSearchKey}
                 />
               })
-              : 
-              !users && !loading? <div className={css.error_massage}>
-                <h1 className={css.loading}>
-                  GitHub API has requests limit. please wait few seconds and try again.
-                </h1>
-              </div>: ''
+              :
+              focused && !users && !loading? <h1 className={css.error_massage}>
+                  { error }
+              </h1>: ''
             }
           </ul>
         </div>
