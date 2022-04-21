@@ -30,7 +30,7 @@ export default function Search() {
     setFocused(true)
   }
   function blur() {
-    // setFocused(false)
+    setFocused(false)
   }
 
   return (
