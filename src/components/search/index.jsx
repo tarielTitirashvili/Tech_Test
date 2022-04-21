@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { getUsers } from "../../API/API"
+import { getUsersApi } from "../../API/API"
 import User from "../user"
 import css from "./search.module.css"
 
@@ -8,22 +8,18 @@ export default function Search() {
   const[ loading, setLoading ] = useState(false)
   const[ users, setUsers ] = useState([])
   const[ focused, setFocused ] = useState(false)
-  const[ error, setError ] = useState('')
+  const[ error, setError ] = useState(false)
+
+  const getUsers = async (searchKey, setLoading, setError) => {
+    try{
+      const data = await getUsersApi(searchKey, setLoading, setError)
+      setUsers(data)
+    }catch(e){}
+  }
 
   useEffect(()=>{
     if(searchKey){
-      setLoading(true)
-      fetch(`https://api.github.com/search/users?q=${searchKey}&per_page=5`,{ method: "GET"} )
-        .then((res)=>res.json())
-        .then((data)=>{
-          setUsers(data.items)
-        })
-      const getterUsers = async () => {
-        const data = await getUsers(searchKey, setLoading, setError)
-        console.log(data)
-      }
-      getterUsers()
-      setLoading(false)
+      getUsers(searchKey, setLoading, setError)
     }
   },[searchKey])
 
@@ -34,12 +30,14 @@ export default function Search() {
     setFocused(true)
   }
   function blur() {
-    setFocused(false)
+    // setFocused(false)
   }
 
   return (
     <>
-      <h2 className={css.small_title} >find github users here fast and easy.</h2>
+      <h2 className={css.small_title}>
+        find github users here fast and easy.
+      </h2>
       <div className={css.search_container}>
         <div className={css.search_wrapper}>
           <textarea 
@@ -56,7 +54,7 @@ export default function Search() {
         <div className={css.users_container}>
           <ul className={css.users_wrapper}>
             {
-              searchKey && focused && users && !loading?
+              !error && searchKey && focused && users && !loading?
               users.map((user)=>{
                 return<User
                   key={user.id}
@@ -67,9 +65,13 @@ export default function Search() {
                 />
               })
               :
-              focused && !users && !loading? <h1 className={css.error_massage}>
-                  { error }
-              </h1>: ''
+              error && focused && !loading? <h1 className={css.error_massage}>
+                GitHub API has requests limit. please wait few seconds and try again.
+              </h1>
+              : !error && focused && !loading && !users? <h1>
+                your search turned up 0 results.
+              </h1>
+              : ''
             }
           </ul>
         </div>

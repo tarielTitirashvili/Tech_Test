@@ -6,10 +6,11 @@ export default function Header() {
     <header className={css.header_container}>
       <img src="" alt="" />
       <h1>
-        <a 
+        <a
           href="https://github.com/" 
           target="_blank"
           rel="noreferrer"
+          className={css.title}
         >
           GitHub Search
         </a>

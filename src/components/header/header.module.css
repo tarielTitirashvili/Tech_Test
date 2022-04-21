@@ -5,3 +5,13 @@
   align-items: center;
   height: 50px;
 }
+@media screen and (max-width: 570px) {
+  .title{
+    font-size: 1.8rem;
+  } 
+}
+@media screen and (max-width: 370px) {
+  .title{
+    font-size: 1.5rem;
+  } 
+}
